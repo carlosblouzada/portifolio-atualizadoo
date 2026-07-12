@@ -1,11 +1,21 @@
-/              /index.html    200
-/stack         /experience.html    301
-/projects      /projects.html    200
-/about         /about.html    200
-/experience    /experience.html    200
-/education     /education.html    200
-/certificates  /certificates.html    200
-/resume        /resume.html    200
-/resume/en     /resume/en.html    200
-/contact       /about.html    301
-/contact.html  /about.html    301
+# Legacy routes from the old static site
+/stack         /experience    301
+/stack.html    /experience    301
+/contact       /about         301
+/contact.html  /about         301
+
+# Old flat .html URLs (pre-directory build)
+/index.html           /                301
+/about.html           /about           301
+/projects.html        /projects        301
+/experience.html      /experience      301
+/education.html       /education       301
+/certificates.html    /certificates    301
+/resume.html          /resume          301
+/resume/en.html       /resume/en       301
+/en.html              /en              301
+/en/about.html        /en/about        301
+/en/projects.html     /en/projects     301
+/en/experience.html   /en/experience   301
+/en/education.html    /en/education    301
+/en/certificates.html /en/certificates 301

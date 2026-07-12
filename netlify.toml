@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 [[redirects]]
   from = "/index.html"
   to = "/"
@@ -60,4 +63,34 @@
 [[redirects]]
   from = "/resume/en.html"
   to = "/resume/en"
+  status = 301
+
+[[redirects]]
+  from = "/en.html"
+  to = "/en"
+  status = 301
+
+[[redirects]]
+  from = "/en/about.html"
+  to = "/en/about"
+  status = 301
+
+[[redirects]]
+  from = "/en/projects.html"
+  to = "/en/projects"
+  status = 301
+
+[[redirects]]
+  from = "/en/experience.html"
+  to = "/en/experience"
+  status = 301
+
+[[redirects]]
+  from = "/en/education.html"
+  to = "/en/education"
+  status = 301
+
+[[redirects]]
+  from = "/en/certificates.html"
+  to = "/en/certificates"
   status = 301

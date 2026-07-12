@@ -3,9 +3,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://portifolio-carlos-louzada.netlify.app',
   compressHTML: true,
-  build: {
-    format: 'file',
-  },
   vite: {
     plugins: [
       {
