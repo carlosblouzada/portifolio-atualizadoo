@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperienceItem from '../../components/ExperienceItem.astro';
+import { educationByLocale } from '../../data/experience';
+import { localizePath } from '../../data/i18n';
+import { pageContent } from '../../data/page-content';
+
+const locale = 'en';
+const content = pageContent[locale].education;
+const education = educationByLocale[locale];
+---
+
+<BaseLayout title={content.title} description={content.description} locale={locale} showChess={false}>
+  <section class="section-about">
+    <div class="section-page-intro">
+      <h1 class="section-title">{content.heading}</h1>
+      <p class="section-subtitle">{content.subtitle}</p>
+      <p class="section-related-link">
+        <a href={localizePath('/certificates', locale)}>{content.certificatesLink}</a>
+      </p>
+    </div>
+
+    <div class="timeline">
+      {education.map((item) => <ExperienceItem item={item} locale={locale} />)}
+    </div>
+  </section>
+</BaseLayout>

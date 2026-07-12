@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResumeDocument from '../../components/ResumeDocument.astro';
+import { pageContent } from '../../data/page-content';
+import { resumePt } from '../../data/resume';
+
+const locale = 'pt';
+const content = pageContent[locale].resume;
+---
+
+<BaseLayout
+  title={content.title}
+  description={content.description}
+  locale={locale}
+  showChess={false}
+>
+  <section class="section-resume">
+    <ResumeDocument resume={resumePt} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,160 @@
+---
+import { site } from '../data/site';
+import type { ResumeContent } from '../data/resume';
+
+interface Props {
+  resume: ResumeContent;
+  showActions?: boolean;
+}
+
+const { resume, showActions = true } = Astro.props;
+---
+
+<article class="resume-document" lang={resume.locale === 'pt' ? 'pt-BR' : 'en'}>
+  {
+    showActions && (
+      <div class="resume-actions no-print">
+        <button type="button" class="resume-btn resume-btn--primary" data-print-resume>
+          {resume.printLabel}
+        </button>
+        {
+          resume.pdfFile && (
+            <a href={resume.pdfFile} class="resume-btn resume-btn--secondary" download>
+              {resume.downloadLabel}
+            </a>
+          )
+        }
+        <a href={resume.locale === 'pt' ? '/resume/en' : '/resume'} class="resume-btn resume-btn--ghost">
+          {resume.locale === 'pt' ? 'View in English' : 'Ver em português'}
+        </a>
+      </div>
+    )
+  }
+
+  <header class="resume-header">
+    <div class="resume-header-text">
+      <h1>{site.fullName}</h1>
+      <p class="resume-headline">{resume.headline}</p>
+      <p class="resume-location">{resume.location} · {site.phone}</p>
+      <div class="resume-contact">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.social[1].url} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={site.website} target="_blank" rel="noopener noreferrer">louzadatech.com</a>
+      </div>
+    </div>
+    <img src={site.profileImage} alt="" class="resume-photo" width="120" height="150" />
+  </header>
+
+  <section class="resume-section">
+    <h2>{resume.sections.summary}</h2>
+    {resume.summary.map((paragraph) => <p>{paragraph}</p>)}
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.skills}</h2>
+    <div class="resume-skills-grid">
+      {
+        resume.skills.map((group) => (
+          <div class="resume-skill-group">
+            <h3>{group.category}</h3>
+            <p>{group.items.join(' · ')}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.experience}</h2>
+    {
+      resume.experiences.map((exp) => (
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div>
+              <h3>
+                {exp.role} — {exp.company}
+              </h3>
+              {exp.context && <p class="resume-entry-subtitle">{exp.context}</p>}
+            </div>
+            <span class="resume-entry-period">{exp.period}</span>
+          </div>
+          <ul>
+            {exp.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+          {exp.stack && <p class="resume-entry-stack"><strong>Stack:</strong> {exp.stack}</p>}
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.military}</h2>
+    <p>{resume.military}</p>
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.projects}</h2>
+    {
+      resume.projects.map((project) => (
+        <div class="resume-entry">
+          <div class="resume-entry-header">
+            <div>
+              <h3>
+                {project.title}
+                {project.subtitle && ` — ${project.subtitle}`}
+                {project.url && (
+                  <>
+                    {' '}
+                    |{' '}
+                    <a href={project.url} class="resume-project-link">
+                      {project.url.replace('https://', '')}
+                    </a>
+                  </>
+                )}
+              </h3>
+            </div>
+            <span class="resume-entry-period">{project.period}</span>
+          </div>
+          <p>{project.description}</p>
+          <p class="resume-entry-stack"><strong>Stack:</strong> {project.stack}</p>
+          {project.tools && <p class="resume-entry-stack"><strong>Tools:</strong> {project.tools}</p>}
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.education}</h2>
+    {
+      resume.education.map((item) => (
+        <div class="resume-entry resume-entry--compact">
+          <div class="resume-entry-header">
+            <div>
+              <h3>{item.degree}</h3>
+              <p class="resume-entry-subtitle">{item.school}</p>
+              {item.note && <p class="resume-entry-note">{item.note}</p>}
+            </div>
+            {item.period && <span class="resume-entry-period">{item.period}</span>}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="resume-section">
+    <h2>{resume.sections.additional}</h2>
+    <ul class="resume-cert-list">
+      {resume.additionalInfo.map((info) => (
+        <li>{info}</li>
+      ))}
+    </ul>
+  </section>
+</article>
+
+<script>
+  document.querySelectorAll('[data-print-resume]').forEach((button) => {
+    button.addEventListener('click', () => window.print());
+  });
+</script>

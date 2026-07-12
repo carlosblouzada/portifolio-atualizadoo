@@ -1,0 +1,53 @@
+---
+import type { ExperienceItem } from '../data/experience';
+import type { Locale } from '../data/i18n';
+import SkillList from './SkillList.astro';
+
+interface Props {
+  item: ExperienceItem;
+  locale?: Locale;
+}
+
+const { item, locale = 'pt' } = Astro.props;
+---
+
+<div class="timeline-item">
+  <div class="timeline-item-header">
+    <div class="timeline-item-titles">
+      <h3>{item.role}</h3>
+      <span class="timeline-company">{item.company}</span>
+    </div>
+    <span class="timeline-tag">{item.type}</span>
+  </div>
+
+  <div class="timeline-item-body">
+    <p class="timeline-description">{item.description}</p>
+
+    {
+      item.highlights && item.highlights.length > 0 && (
+        <ul class="timeline-highlights">
+          {item.highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {item.skills && item.skills.length > 0 && <SkillList skillIds={item.skills} locale={locale} />}
+  </div>
+
+  <div class="timeline-item-footer">
+    {
+      item.location && (
+        <span class="timeline-meta">
+          <img src="/icons/location.svg" alt="" width="16" height="16" />
+          {item.location}
+        </span>
+      )
+    }
+    <span class="timeline-meta timeline-meta--period">
+      <img src="/icons/calendar.svg" alt="" width="16" height="16" />
+      {item.period}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Logo Carlos Bergson">
+  <title>Carlos Bergson</title>
+  <!-- Left brace -->
+  <path
+    d="M11 13c-2.5 3.5-2.5 8.5 0 12"
+    fill="none"
+    stroke="#21a6f0"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+  <!-- C monogram -->
+  <path
+    d="M30 14.5A9.5 9.5 0 1 0 30 33.5"
+    fill="none"
+    stroke="#42446e"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    transform="translate(-5 0)"
+  />
+  <!-- L monogram -->
+  <path
+    d="M22 14.5v19M22 33.5h11"
+    fill="none"
+    stroke="#21a6f0"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Right brace -->
+  <path
+    d="M37 13c2.5 3.5 2.5 8.5 0 12"
+    fill="none"
+    stroke="#21a6f0"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    opacity="0.45"
+  />
+</svg>

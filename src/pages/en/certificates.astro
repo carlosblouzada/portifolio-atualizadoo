@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CertificateItem from '../../components/CertificateItem.astro';
+import { certificatesByLocale } from '../../data/certificates';
+import { pageContent } from '../../data/page-content';
+
+const locale = 'en';
+const content = pageContent[locale].certificates;
+const certificates = certificatesByLocale[locale];
+---
+
+<BaseLayout title={content.title} description={content.description} locale={locale} showChess={false}>
+  <section class="section-about">
+    <div class="section-page-intro">
+      <h1 class="section-title">{content.heading}</h1>
+      <p class="section-subtitle">{content.subtitle}</p>
+    </div>
+
+    <div class="timeline">
+      {certificates.map((item) => <CertificateItem item={item} locale={locale} />)}
+    </div>
+  </section>
+</BaseLayout>

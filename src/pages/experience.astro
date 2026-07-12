@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import { experiencesByLocale } from '../data/experience';
+import { pageContent } from '../data/page-content';
+
+const locale = 'pt';
+const content = pageContent[locale].experience;
+const experiences = experiencesByLocale[locale];
+---
+
+<BaseLayout
+  title={content.title}
+  description={content.description}
+  locale={locale}
+  showChess={false}
+>
+  <section class="section-about">
+    <div class="section-page-intro">
+      <h1 class="section-title">{content.heading}</h1>
+      <p class="section-subtitle">{content.subtitle}</p>
+    </div>
+
+    <div class="timeline">
+      {experiences.map((item) => <ExperienceItem item={item} locale={locale} />)}
+    </div>
+  </section>
+</BaseLayout>

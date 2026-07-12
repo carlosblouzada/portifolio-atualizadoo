@@ -1,0 +1,93 @@
+---
+import {
+  getLanguageLinks,
+  localizePath,
+  locales,
+  navByLocale,
+  normalizePath,
+  uiByLocale,
+  type Locale,
+} from '../data/i18n';
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'pt' } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const currentBasePath = normalizePath(currentPath);
+const navItems = navByLocale[locale];
+const languageLinks = getLanguageLinks(currentPath);
+const ui = uiByLocale[locale];
+
+function isActive(href: string): boolean {
+  return currentBasePath === normalizePath(href);
+}
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav
+      id="main-nav"
+      class="nav-group-page-items"
+      aria-label={ui.mainNavigation}
+      data-open-label={ui.openNavigation}
+      data-close-label={ui.closeNavigation}
+    >
+      {
+        navItems.map((item) => (
+          <a href={localizePath(item.href, locale)} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="header-actions">
+      <button
+        id="dark-mode-toggle"
+        class="dark-mode-toggle"
+        type="button"
+        aria-label="Ativar modo escuro"
+        data-light-label={ui.activateLightMode}
+        data-dark-label={ui.activateDarkMode}
+        aria-pressed="false"
+      >
+        <img src="/icons/icons8-lua-48.png" alt="" width="28" height="28" />
+      </button>
+
+      <div class="language-switcher" aria-label={ui.languageSwitcher}>
+        {
+          languageLinks.map((link) => (
+            <a
+              href={link.href}
+              lang={locales[link.locale].code}
+              aria-current={link.locale === locale ? 'true' : undefined}
+              aria-label={`${ui.languageSwitcher}: ${link.label}`}
+            >
+              {link.shortLabel}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <button
+      id="nav-toggle"
+      class="nav-toggle"
+      type="button"
+      aria-label={ui.openNavigation}
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div id="nav-backdrop" class="nav-backdrop" hidden aria-hidden="true"></div>
+
+<script>
+  import '../scripts/dark-mode.ts';
+</script>

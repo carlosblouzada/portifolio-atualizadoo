@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { aboutPages } from '../data/about';
+import { localizePath } from '../data/i18n';
+import { pageContent } from '../data/page-content';
+import { site } from '../data/site';
+
+const locale = 'pt';
+const aboutPage = aboutPages[locale];
+const content = pageContent[locale].about;
+---
+
+<BaseLayout
+  title={content.title}
+  description={content.description}
+  locale={locale}
+>
+  <section class="section-about">
+    <div class="about-hero">
+      <div class="about-hero-content">
+        <h1 class="section-title">{aboutPage.title}</h1>
+        <p class="about-intro">{aboutPage.intro}</p>
+        <p class="about-location">
+          <img src="/icons/location.svg" alt="" width="16" height="16" />
+          {site.location}
+        </p>
+      </div>
+    </div>
+
+    <div class="about-narrative">
+      {aboutPage.narrative.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    <div class="about-values">
+      <h2 class="about-values-title">{aboutPage.valuesTitle}</h2>
+      <div class="about-values-grid">
+        {
+          aboutPage.values.map((item) => (
+            <article class="about-value-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="about-actions">
+      <a href={localizePath(aboutPage.actions.projectsHref, locale)} class="about-btn about-btn--primary">
+        {aboutPage.actions.projectsLabel}
+      </a>
+      <a href={aboutPage.actions.contactHref} class="about-btn about-btn--secondary">
+        {aboutPage.actions.contactLabel}
+      </a>
+      <div class="about-resume-links">
+        <span class="about-resume-label">{aboutPage.actions.resumeLabel}:</span>
+        <a href={localizePath(aboutPage.actions.resumePtHref, 'pt')}>PT</a>
+        <span aria-hidden="true">·</span>
+        <a href={localizePath('/resume', 'en')}>EN</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import type { Project } from '../data/projects';
+import { uiByLocale, type Locale } from '../data/i18n';
+import SkillList from './SkillList.astro';
+
+interface Props {
+  project: Project;
+  locale?: Locale;
+}
+
+const { project, locale = 'pt' } = Astro.props;
+const ui = uiByLocale[locale];
+---
+
+<article class:list={['project-card', { 'project-card--in-progress': project.inProgress }]}>
+  <div
+    class:list={['project-card-poster', { 'project-card-poster--logo': project.logo }]}
+    style={[
+      `--poster-hue: ${project.poster.hue}`,
+      project.logoBackground ? `--logo-bg: ${project.logoBackground}` : undefined,
+    ]
+      .filter(Boolean)
+      .join('; ')}
+    aria-hidden="true"
+  >
+    {
+      project.logo ? (
+        <img src={project.logo} alt="" class="project-card-poster-logo" loading="lazy" />
+      ) : (
+        <span class="project-card-poster-initials">{project.poster.initials}</span>
+      )
+    }
+    {project.year && <span class="project-card-poster-year">{project.year}</span>}
+  </div>
+  <div class="project-card-content">
+    <div class="project-card-header">
+      <h2>{project.title}</h2>
+      {project.role && <p class="project-card-role">{project.role}</p>}
+      {project.subtitle && <p class="project-card-subtitle">{project.subtitle}</p>}
+    </div>
+    <p class="project-card-description">{project.description}</p>
+    <div class="project-card-stacks">
+      <span class="project-card-stacks-label">{ui.technologies}</span>
+      <SkillList skillIds={project.skills} locale={locale} />
+    </div>
+    <div class="project-card-links">
+      {
+        project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <img src="/icons/link.svg" alt="" width="18" height="18" />
+            {project.liveLabel ?? ui.viewProject}
+          </a>
+        )
+      }
+      {
+        project.storeUrl && (
+          <a href={project.storeUrl} target="_blank" rel="noopener noreferrer">
+            <img src="/icons/link.svg" alt="" width="18" height="18" />
+            {project.storeLabel ?? 'Google Play'}
+          </a>
+        )
+      }
+      {
+        project.repoUrl && (
+          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+            <img src="/icons/github-small.svg" alt="" width="18" height="18" />
+            {project.repoLabel ?? ui.viewCode}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

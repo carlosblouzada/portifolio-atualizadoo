@@ -1,0 +1,85 @@
+---
+import type { CertificateItem } from '../data/certificates';
+import { uiByLocale, type Locale } from '../data/i18n';
+import SkillList from './SkillList.astro';
+
+interface Props {
+  item: CertificateItem;
+  locale?: Locale;
+}
+
+const { item, locale = 'pt' } = Astro.props;
+const ui = uiByLocale[locale];
+const periodLabel = item.expiryDate
+  ? `${ui.issuedIn} ${item.issuedDate} · ${ui.expiresIn} ${item.expiryDate}`
+  : `${ui.issuedIn} ${item.issuedDate}`;
+---
+
+<div class="timeline-item">
+  <div class="timeline-item-header">
+    <div class="timeline-item-titles">
+      <h3>{item.title}</h3>
+      <span class="timeline-company">{item.issuer}</span>
+    </div>
+  </div>
+
+  <div class="timeline-item-body">
+    {item.description && <p class="timeline-description">{item.description}</p>}
+
+    {
+      item.highlights && item.highlights.length > 0 && (
+        <ul class="timeline-highlights">
+          {item.highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {item.skills && item.skills.length > 0 && <SkillList skillIds={item.skills} locale={locale} />}
+
+    {
+      item.credentialCode && (
+        <p class="timeline-credential-code">
+          {ui.authenticityCode}: {item.credentialCode}
+        </p>
+      )
+    }
+
+    <div class="timeline-credential-links">
+      {
+        item.credentialUrl && (
+          <a
+            href={item.credentialUrl}
+            class="timeline-credential-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/link.svg" alt="" width="14" height="14" />
+            {ui.showCredential}
+          </a>
+        )
+      }
+      {
+        item.certificateFile && (
+          <a
+            href={item.certificateFile}
+            class="timeline-credential-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/link.svg" alt="" width="14" height="14" />
+            {ui.viewCertificate}
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="timeline-item-footer">
+    <span class="timeline-meta timeline-meta--period">
+      <img src="/icons/calendar.svg" alt="" width="16" height="16" />
+      {periodLabel}
+    </span>
+  </div>
+</div>

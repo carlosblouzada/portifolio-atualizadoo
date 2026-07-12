@@ -1,77 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <title>Portfolio | Carlos Louzada</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Carlos Bergson</title>
+  <script>
+    (function () {
+      var built = './dist/index.html';
+      fetch(built, { method: 'HEAD' })
+        .then(function (response) {
+          if (response.ok) {
+            window.location.replace(built);
+            return;
+          }
+          document.documentElement.classList.add('show-fallback');
+        })
+        .catch(function () {
+          document.documentElement.classList.add('show-fallback');
+        });
+    })();
+  </script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 40rem;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      color: #42446e;
+      line-height: 1.6;
+    }
+    code, pre {
+      background: #f0f1f3;
+      border-radius: 8px;
+    }
+    code { padding: 0.15rem 0.4rem; }
+    pre { padding: 1rem; overflow-x: auto; }
+    .fallback { display: none; }
+    html.show-fallback .fallback { display: block; }
+    html.show-fallback .loading { display: none; }
+  </style>
 </head>
-
 <body>
-    <div class="page-wrapper">
-
-        <div class="header">
-            <div class="nav-group-logo">
-                <a href="icons/logo.png" class="logo-link" target="_blank"></a>
-            </div>
-
-            <div class="nav-group-page-items">
-                <a href="index.html">Inicio</a>
-                <a href="stack.html">Tecnologias</a>
-                <a href="projects.html">Projetos</a>
-                <a href="about.html">Sobre</a>
-                <a href="contact.html">Contatos</a>
-
-            </div>
-            <div>
-                
-                <a href="#"><img src="icons/icons8-lua-48.png" id="dark-mode-toggle"></a>
-            </div>
-
-
-            <div class="nav-group-social-icons">
-                <a href="https://github.com/cblouzada" target="_blank">
-                    <img src="icons/icons8-github-45.png" alt="Github icon" class="github"><br>
-                </a>
-
-                <a href="https://www.instagram.com/cblouzada/" target="_blank">
-                    <img src="icons/icons8-instagram-45.png" alt="Intagram icon" class="instagram">
-                </a>
-
-                <a href="https://www.linkedin.com/in/carlos-bergson/" target="_blank">
-                    <img src="icons/icons8-linkedin-45.png" alt="Linkedin icon" class="linkedin">
-
-                </a>
-            </div>
-        </div>
-        <div class="main-home">
-            <div class="section-home">
-                <div class="section-home-item">
-
-                    <h1>
-                        Olá DEV'S <img src="icons/icons8-laptop-48.png" alt="icon"><br> Meu nome é <br>
-                        <span class="my-name">Carlos Louzada</span><br>Software Developer
-                    </h1>
-
-                    <img src="Foto-perfil/Atual.jpeg" alt="Profile photo" class="profile-img">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer>  
-        <img src="./icons/icons8-xadrez-45.png" alt="xadrez" class="xadrez">
-        <p>Desenvolvido por Carlos Bergson Cruz Louzada</p>
-    </footer>  
-    <script src="index.js"></script>
+  <p class="loading">Carregando portfólio...</p>
+  <div class="fallback">
+    <h1>Portfólio migrado para Astro</h1>
+    <p>Para visualizar o site localmente, use o servidor de desenvolvimento:</p>
+    <pre>npm install
+npm run dev</pre>
+    <p>Depois acesse <a href="http://localhost:4321/">http://localhost:4321/</a></p>
+    <p>Para gerar os arquivos estáticos:</p>
+    <pre>npm run build
+npm run preview</pre>
+  </div>
 </body>
-
 </html>

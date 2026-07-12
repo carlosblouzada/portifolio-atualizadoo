@@ -1,47 +1,67 @@
-# Portfólio de Carlos Louzada 🚀📊
+# Portfólio de Carlos Bergson
 
-Bem-vindo ao meu portfólio! Aqui está uma visão detalhada do projeto:
+Portfólio pessoal desenvolvido com [Astro](https://astro.build), com layout responsivo, dark mode e conteúdo separado em arquivos de dados editáveis.
 
-## Descrição 📝✨
+**Site:** [portifolio-carlos-louzada.netlify.app](https://portifolio-carlos-louzada.netlify.app)
 
-Meu portfólio é um projeto pessoal que destaca minhas habilidades, projetos e informações relevantes. Desenvolvido utilizando HTML5, CSS3 e JavaScript, com envio de formulario para meu e-mail e oferece uma experiência interativa e informativa.
+## Funcionalidades
 
-## Captura de Tela
+- Página inicial com apresentação e foto de perfil
+- Competências com ícones contextualizadas em experiências, formação, certificados e projetos
+- Portfólio de projetos com cards
+- Sobre, experiências, formação e certificados em timeline
+- Formulário de contato via FormSubmit.co
+- Dark mode completo (persistido no navegador)
+- Layout responsivo (mobile, tablet e desktop)
+- SEO com meta tags e Open Graph
 
-![capagithub](https://github.com/cblouzada/portifolio-atualizado/assets/104369215/55da5d9f-9ee2-4faf-a96a-ee9a913e5950)
-![capadark](https://github.com/cblouzada/portifolio-atualizado/assets/104369215/6b9d51d7-51a0-4e90-95bd-535da630e5bb)
+## Estrutura do projeto
 
+```
+src/
+├── components/     # Header, Footer, ProjectCard, etc.
+├── data/           # Conteúdo editável (projetos, skills, experiências)
+├── layouts/        # BaseLayout com SEO
+├── pages/          # Rotas do site
+├── scripts/        # Dark mode e menu mobile
+└── styles/         # CSS com variáveis e dark mode
+public/
+├── icons/          # Ícones e imagens de projetos
+└── images/profile/ # Foto de perfil
+```
 
+## Como rodar localmente
 
+```bash
+npm install
+npm run dev
+```
 
-## Funcionalidades 🚀🔧
+Acesse [http://localhost:4321/](http://localhost:4321/) — **não** abra `index.html` direto no navegador.
 
-- **Seção Inicial:** Apresenta uma introdução com minha foto, nome e uma barra de navegação para fácil acesso às diferentes partes do portfólio.
-- **Tecnologias:** Destaca as principais tecnologias que utilizo no meu dia a dia, incluindo HTML5, CSS3, JavaScript, React, Git, VSCode, Linux, NodeJS, Movi Desk, Any Desk e Figma.
-- **Projetos:** Lista abrangente de todos os meus projetos, desde concluídos até aqueles em fase de desenvolvimento.
-- **Sobre:** Oferece uma visão mais aprofundada sobre mim, incluindo uma breve descrição pessoal, experiências profissionais e formação acadêmica.
-- **Contatos:** Permite aos visitantes enviar e-mails para mim, facilitando a comunicação.
-- **Modo Escuro:** Opção para ativar o modo escuro, proporcionando uma experiência mais agradável em ambientes com pouca luz.
-- **Redes Sociais:** Conecte-se comigo no GitHub, LinkedIn e Instagram para acompanhar meu trabalho.
+> Se aparecer `Cannot GET /index.html`, você está usando um servidor estático na raiz do projeto. Use `npm run dev` ou, após o build, `npm run preview`.
 
-## Como Explorar 🌐💻
+## Build e deploy
 
-1. **Clone o Repositório:** Clone este repositório em seu ambiente local.
-2. **Abra o Arquivo HTML:** Abra o arquivo HTML em seu navegador para explorar o portfólio.
-3. **Interaja com as Seções:** Navegue pelas diferentes seções, conheça meus projetos e informações pessoais.
-4. **Entre em Contato:** Utilize a seção de contatos para enviar e-mails ou conecte-se através das redes sociais.
+```bash
+npm run build
+npm run preview
+```
 
-## Contribuições 🤝👏
+O deploy no Netlify usa `npm run build` e publica a pasta `dist/` (configurado em `netlify.toml`).
 
-Se você deseja contribuir com melhorias, correções ou novos recursos para este projeto, siga estas etapas:
+## Atualizar conteúdo
 
-1. Faça um fork deste repositório.
-2. Crie uma branch para sua contribuição (`git checkout -b sua-contribuicao`).
-3. Faça suas modificações e adições de forma clara.
-4. Envie um pull request com suas contribuições.
+Edite os arquivos em `src/data/`:
 
-Agradeço sua colaboração para tornar este portfólio ainda mais informativo e interativo para todos!
+| Arquivo | Conteúdo |
+|---------|----------|
+| `site.ts` | Nome, bio, redes sociais, e-mail |
+| `skills.ts` | Registro de tecnologias e ícones |
+| `projects.ts` | Lista de projetos |
+| `experience.ts` | Experiências profissionais e formação |
+| `certificates.ts` | Certificados e licenças |
 
-## Licença 📄
+## Licença
 
-Este projeto é licenciado sob a Licença MIT - consulte o arquivo [LICENSE.md](LICENSE.md) para obter detalhes.
+MIT

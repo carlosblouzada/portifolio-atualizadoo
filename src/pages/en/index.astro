@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localizePath } from '../../data/i18n';
+import { pageContent } from '../../data/page-content';
+import { site } from '../../data/site';
+
+const locale = 'en';
+const content = pageContent[locale].home;
+---
+
+<BaseLayout title={`${content.title} | ${site.name}`} locale={locale}>
+  <section class="section-home">
+    <div class="section-home-item">
+      <div class="home-hero-text">
+        <h1>
+          <span class="home-hero-name">{site.name}</span>
+          <span class="home-hero-role">{site.title}</span>
+        </h1>
+        <p class="home-hero-tagline">{content.tagline}</p>
+        <div class="home-hero-actions">
+          <a href={localizePath(content.workHref, locale)} class="about-btn about-btn--primary">
+            {content.workCta}
+          </a>
+          <a href={content.contactHref} class="about-btn about-btn--secondary">
+            {content.contactCta}
+          </a>
+        </div>
+      </div>
+      <img
+        src={site.profileImage}
+        alt={`${content.profileAlt} ${site.name}`}
+        class="profile-img"
+        width="800"
+        height="1000"
+      />
+    </div>
+  </section>
+</BaseLayout>

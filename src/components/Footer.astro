@@ -1,0 +1,30 @@
+---
+import { site } from '../data/site';
+import { uiByLocale, type Locale } from '../data/i18n';
+
+interface Props {
+  message?: string;
+  creditLabel?: string;
+  locale?: Locale;
+}
+
+const { message, creditLabel = 'Desenvolvido por', locale = 'pt' } = Astro.props;
+const ui = uiByLocale[locale];
+---
+
+<footer class="site-footer">
+  <p class="site-footer-credit">{message ?? `${creditLabel} ${site.fullName}`}</p>
+  <nav class="site-footer-contact" aria-label={ui.footerContactNav}>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">{ui.footerWhatsApp}</a>
+  </nav>
+  <nav class="site-footer-social" aria-label={ui.footerSocialNav}>
+    {
+      site.social.map((social) => (
+        <a href={social.url} target="_blank" rel="noopener noreferrer">
+          {social.name}
+        </a>
+      ))
+    }
+  </nav>
+</footer>

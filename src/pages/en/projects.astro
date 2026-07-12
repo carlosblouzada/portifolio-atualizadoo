@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { pageContent } from '../../data/page-content';
+import { projectsByLocale } from '../../data/projects';
+
+const locale = 'en';
+const content = pageContent[locale].projects;
+const projects = projectsByLocale[locale];
+---
+
+<BaseLayout
+  title={content.title}
+  description={content.description}
+  locale={locale}
+  showChess={false}
+>
+  <section class="section-projects">
+    <div class="section-projects-intro">
+      <h1 class="section-title">{content.heading}</h1>
+      <p class="section-subtitle">{content.subtitle}</p>
+    </div>
+    <div class="section-projects-cards-container">
+      {projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+    </div>
+  </section>
+</BaseLayout>

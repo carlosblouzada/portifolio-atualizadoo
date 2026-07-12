@@ -1,0 +1,63 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/stack.html"
+  to = "/experience"
+  status = 301
+
+[[redirects]]
+  from = "/stack"
+  to = "/experience"
+  status = 301
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects"
+  status = 301
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/experience.html"
+  to = "/experience"
+  status = 301
+
+[[redirects]]
+  from = "/education.html"
+  to = "/education"
+  status = 301
+
+[[redirects]]
+  from = "/certificates.html"
+  to = "/certificates"
+  status = 301
+
+[[redirects]]
+  from = "/resume.html"
+  to = "/resume"
+  status = 301
+
+[[redirects]]
+  from = "/resume/en.html"
+  to = "/resume/en"
+  status = 301

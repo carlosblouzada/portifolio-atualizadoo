@@ -1,0 +1,24 @@
+---
+import SkillChip from './SkillChip.astro';
+import { resolveSkills } from '../data/skills';
+import type { Locale } from '../data/i18n';
+
+interface Props {
+  skillIds?: string[];
+  class?: string;
+  locale?: Locale;
+}
+
+const { skillIds = [], class: className, locale = 'pt' } = Astro.props;
+const skills = resolveSkills(skillIds, locale);
+---
+
+{
+  skills.length > 0 && (
+    <div class:list={['skill-list', className]}>
+      {skills.map((skill) => (
+        <SkillChip skill={skill} />
+      ))}
+    </div>
+  )
+}
